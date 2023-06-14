@@ -1,34 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <meta charset="UTF-8">
-  <title>自己紹介</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./css/w3.css">
+  <script type="text/javascript" src="js/vue.dev.js"></script>
+  <title>配列の情報追加・削除</title>
+  <style>
+    .done{
+      display: inline-block;
+      margin-left: 0.5em;
+      color: rgb(6, 223, 252);
+      font-weight: bold;
+    }
+  </style>
 </head>
+
 <body>
-<div class="contaner">
-  <div class="fs-4">
-    <div style="margin-left: 1%">
-  <h1 class="display-5">自己紹介</h1>
-  <p>名前: 安岡 凜</p>
-  <p>
-    <a href="https://goo.gl/maps/qx47yQSMd99S7pH28">埼玉県和光市</a>出身、
-    <abbr title="HyperText Markup Language">平成14年</abbr>生まれ
-  </p>
-  <h2 class="display-5">趣味</h2>
-  <p>ゲーム、運動、音楽を聴くこと</p>
-  <p>飽き性なので色々なものに手を付けています！</p>
-  <h1 class="display-6">ほしいものリスト</h1>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">家</li>
-    <li class="list-group-item">自動車免許</li>
-    <li class="list-group-item">車</li>
-    <li class="list-group-item">土地</li>
-    <li class="list-group-item">お金</li>
-  </ul>
+<div id="vue" class="w3-container">
+  <h1>Vue.jsでタスク管理</h1>
+  <table class="w3-table-all w3-margin-top">
+    <tr>
+      <th>タスク名</th>
+      <th>締切</th>
+      <th>重要度</th>
+      <th>完了</th>
+      <th>削除</th>
+    </tr>
+
+    <tr v-for='task in tasks' :class='task.done=="完了"?"w3-dark-gray":""'>
+      <td>
+        {{task.name}}
+        <span v-if='task.done == "完了"' class="done">完了済</span>
+      </td>
+      <td>{{task.date}}</td>
+      <td>{{task.level}}</td>
+      <td>
+        <input v-if='task.done == "完了"' type="button" class="w3-btn" @click='switchDone(task)' value="未完">
+        <input v-else type="button" class="w3-btn" @click='switchDone(task)' value="完了">
+      </td>
+      <td>
+        <input type="button" class="w3-btn" @click='removeTask(task)' value="削除">
+      </td>
+    </tr>
+  </table>
+  <hr>
+  <div class="w3-row">
+
+    <div class="w3-col w3-quarter w3-padding">
+      <input type="text" class="w3-input w3-border" v-model='newtask.name' placeholder="タスク名">
     </div>
+
+    <div class="w3-col w3-quarter w3-padding">
+      <input type="date" class="w3-input w3-border" v-model='newtask.date' placeholder="締切">
+    </div>
+
+    <div class="w3-col w3-quarter w3-padding">
+      <select type="text" class="w3-input w3-border" v-model='newtask.level' placeholder="重要度">
+        <option value="" disabled selected style="display:none;">重要度</option>
+        <option>★☆☆</option>
+        <option>★★☆</option>
+        <option>★★★</option>
+      </select>
+    </div>
+
+    <div class="w3-col w3-quarter w3-padding">
+      <input type="button" class="w3-btn-block" @click='addTask()' value="新規タスク追加">
+    </div>
+
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    new Vue({
+        el: '#vue',
+        data: {
+            tasks: [
+                {
+                    "name": "履修登録",
+                    "date": "2023/4/19",
+                    "level": "★★☆"
+                },
+                {
+                    "name": "Webデザイン最終課題",
+                    "date": "2023/4/28",
+                    "level": "★☆☆"
+                }
+            ],
+            newtask: {
+                "name": "", "date": "", "level": "", "done": ""
+            }
+        },
+
+        created: function () {
+            this.init();
+            this.loadTasks();
+        },
+
+        methods: {
+            init: function () {
+                if (localStorage.getItem("tasks") == undefined) {
+                    localStorage.setItem("tasks", "[]");
+                }
+            },
+
+            loadTasks: function () {
+                this.tasks = JSON.parse(localStorage.getItem("tasks"));
+            },
+
+            saveTasks: function () {
+                localStorage.setItem("tasks", JSON.stringify(this.tasks));
+            }
+
+            addTask: function () {
+                this.tasks.push({ "name": this.newtask.name, "date": this.newtask.date, "level": this.newtask.level, "done": this.newtask.done });
+                this.newtask.name = "";
+                this.newtask.date = "";
+                this.newtask.level = "";
+                this.saveTasks();
+            },
+
+            switchDone: function (task) {
+                if (task.done == "未完") {
+                    task.done = "完了";
+                } else {
+                    task.done = "未完";
+                }
+
+                this.saveTasks();
+            },
+
+            removeTask: function (task) {
+                this.tasks = this.tasks.filter(item => item != task);
+
+                this.saveTasks();
+            }
+        }
+    });
+</script>
 </body>
+
 </html>
