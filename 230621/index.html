@@ -5,11 +5,54 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <title>中間課題</title>
+  <title>wiget</title>
 </head>
 
 <body id="top">
 <div class="container">
+
+
+  <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-sm-2" type="search" placeholder="Search" spellcheck="false" data-ms-editor="true">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
 
   <div class="row">
     <div class="col border">
@@ -46,6 +89,12 @@
       <hr>
       <p>本文</p>
       <div class="pb-5"></div>
+
+      <h4>東京工科大学</h4>
+      <hr>
+        <p>位置情報</p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.0577223757095!2d139.33716081516337!3d35.62630348020721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60191da6d0a3a261%3A0x337318568a7aaa3b!2z5p2x5Lqs5bel56eR5aSn5a2mIOWFq-eOi-WtkOOCreODo-ODs-ODkeOCuQ!5e0!3m2!1sja!2sjp!4v1497415048644" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      <div class="pb-5"></div>
     </div>
 
     <div class="d-block d-md-none col-md-3 border">
@@ -78,7 +127,7 @@
         <li class="list-group-item">3.</li>
         <li class="list-group-item">4.</li>
         <li class="list-group-item">5.</li>
-        
+
       </ul>
     </div>
   </div>
