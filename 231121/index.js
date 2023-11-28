@@ -18,6 +18,7 @@ function allButton() {
 function saburonBotButton() {
     outputTweets(tweets.filter(tweet => tweet.name === "三郎BOT"));
 }
+
 function jiroButton() {
     outputTweets(tweets.filter(tweet => tweet.name === "次郎"));
 }
@@ -25,8 +26,6 @@ function jiroButton() {
 function taroButton() {
     outputTweets(tweets.filter(tweet => tweet.name === "太郎"));
 }
-
-
 
 
 
