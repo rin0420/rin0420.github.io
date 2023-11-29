@@ -4,7 +4,7 @@ function outputTweets(tweets) {
         outputHtml +=
             `<ul class="list-group">
               <li class="list-group-item">
-              <img src="${tweet.avatar}" width="50" height="60" alt="${tweet.name}のプロフィール画像"></img><a>${tweet.name}</a>: ${tweet.message} <i>${tweet.tweetedAt}</i>
+              <img src="${tweet.avatar}" width="60" height="70" alt="${tweet.name}のプロフィール画像"></img><a>${tweet.name}</a>: ${tweet.message} <i>${tweet.tweetedAt}</i>
               </li>
              </ul>`;
     }
