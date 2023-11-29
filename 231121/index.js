@@ -1,7 +1,12 @@
 function outputTweets(tweets) {
     let outputHtml = '<ul>';
     for (let tweet of tweets) {
-        outputHtml += `<li><img src="${tweet.avatar}" width="50" height="60" alt="${tweet.name}のプロフィール画像"></img><a>${tweet.name}</a>: ${tweet.message} <i>${tweet.tweetedAt}</i></li>`;
+        outputHtml +=
+            `<ul class="list-group">
+              <li class="list-group-item">
+              <img src="${tweet.avatar}" width="50" height="60" alt="${tweet.name}のプロフィール画像"></img><a>${tweet.name}</a>: ${tweet.message} <i>${tweet.tweetedAt}</i>
+              </li>
+             </ul>`;
     }
     outputHtml += '</ul>';
     answer.innerHTML = outputHtml;
